@@ -13,10 +13,15 @@ import {
 import { Crown, LogIn, LogOut, Settings, User } from "lucide-react";
 import { ResponsiveText } from "./responsive-text";
 import Link from "next/link";
-
-const nombre = localStorage.getItem("nombre");
+import { useState, useEffect } from "react";
 
 export function UserNav() {
+  const [nombre, setNombre] = useState<string | null>(null);
+
+  useEffect(() => {
+    setNombre(window?.localStorage?.getItem("nombre"));
+  }, []);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

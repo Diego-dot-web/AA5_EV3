@@ -1,10 +1,16 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { UserNav } from "./components/user-nav"
-import { ModeToggle } from "./components/mode-toggle"
-import Dashboard from "./components/dashboard"
-import TodoList from "./components/todo-list"
-import Timer from "./components/timer"
-import Achievements from "./components/achievements"
+"use client";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { UserNav } from "./components/user-nav";
+import { ModeToggle } from "./components/mode-toggle";
+import Dashboard from "./components/dashboard";
+import TodoList from "./components/todo-list";
+import Timer from "./components/timer";
+import Achievements from "./components/achievements";
+import dynamic from "next/dynamic";
+
+const LoginNoSSR = dynamic(() => import("./(auth)/login/page"), {
+  ssr: false,
+});
 
 export default function ProductivityApp() {
   return (
@@ -24,13 +30,20 @@ export default function ProductivityApp() {
             <TabsTrigger value="timer">Forja del Tiempo</TabsTrigger>
             <TabsTrigger value="achievements">Logros</TabsTrigger>
           </TabsList>
-          <TabsContent value="dashboard"><Dashboard /></TabsContent>
-          <TabsContent value="todos"><TodoList /></TabsContent>
-          <TabsContent value="timer"><Timer /></TabsContent>
-          <TabsContent value="achievements"><Achievements /></TabsContent>
+          <TabsContent value="dashboard">
+            <Dashboard />
+          </TabsContent>
+          <TabsContent value="todos">
+            <TodoList />
+          </TabsContent>
+          <TabsContent value="timer">
+            <Timer />
+          </TabsContent>
+          <TabsContent value="achievements">
+            <Achievements />
+          </TabsContent>
         </Tabs>
       </main>
     </div>
-  )
+  );
 }
-

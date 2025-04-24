@@ -64,8 +64,8 @@ export default function LoginPage() {
       .then((response) => {
         if (response.ok) {
           response.json().then((data) => {
-            localStorage.setItem("nombre", data.user.nombre);
-            localStorage.setItem("email", data.user.email);
+            window?.localStorage?.setItem("nombre", data.user.nombre);
+            window?.localStorage?.setItem("email", data.user.email);
 
             router.push("/");
           });
